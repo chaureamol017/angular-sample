@@ -1,0 +1,17 @@
+<app-header (toggleMenu)="sideBarToggler()"></app-header>
+
+<mat-drawer-container>
+    <mat-drawer mode="side" [opened]="sideBarOpen">
+        <app-sidebar (indexChange)="switchSideBarContent($event)"></app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content >
+        <app-button-page *ngIf="sideBarIndex == 0"></app-button-page>
+        <app-drop-down-page *ngIf="sideBarIndex == 1"></app-drop-down-page>
+        <app-table-page *ngIf="sideBarIndex == 2"></app-table-page>
+        <app-dialog-page *ngIf="sideBarIndex == 3"></app-dialog-page>
+        <app-notification-page *ngIf="sideBarIndex == 4"></app-notification-page>
+
+    </mat-drawer-content>
+</mat-drawer-container>
+
+<app-footer></app-footer>

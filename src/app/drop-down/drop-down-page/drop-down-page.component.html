@@ -1,0 +1,8 @@
+<div style="width: 300px;">
+    <app-select-autocomplete [placeHolder]="'Search Select'" [options]="options" (selectCallback)="onOptionSelect($event)"></app-select-autocomplete>
+</div>
+<div style="width: 300px;">
+    <app-multi-select-autocomplete [placeHolder]="'Customer'" [options]="customerDataSource" [showProgressSpinner]="customerSpinner"
+    #customerMultiSelect (callbackResult)="onCloseCustomer($event)">
+</app-multi-select-autocomplete>
+</div>

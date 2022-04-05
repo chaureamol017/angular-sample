@@ -1,0 +1,12 @@
+.multi-select-wrapper {
+    width: 100%;
+
+    .progress-spinner { 
+        display: inline-flex;
+    }
+
+    .clear-icon {
+        cursor: pointer;
+        font-size: 20px;
+    }
+}

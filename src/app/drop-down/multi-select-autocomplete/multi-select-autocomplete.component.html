@@ -1,0 +1,19 @@
+<mat-form-field class="multi-select-wrapper">
+    <input type="text" placeholder="{{placeHolder}}" matInput [matAutocomplete]="auto" [formControl]="selectFormControl" />
+        <mat-hint *ngIf="enableHint" >Enter text to find {{placeHolder}} by name</mat-hint>
+
+        <mat-spinner matSuffix *ngIf="showProgressSpinner" class="progress-spinner" [diameter]="18"></mat-spinner>
+
+        <mat-icon matSuffix class="clear-icon" matTooltip="clear all" (click)="resetSelection()">clear</mat-icon>
+        <mat-icon matSuffix>arrow_drop_down</mat-icon>
+</mat-form-field>
+
+<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (closed)="onClosedEvent($event)">
+    <mat-option *ngFor="let item of filteredOptions" [value]="selectedOptions">
+        <div (click)="optionClicked($event, item)">
+            <mat-checkbox [checked]="item.selected" (change)="toggleSelection(item)" (click)="$event.stopPropagation()">
+                <div innerHTML="{{ item.name}}" matTooltip="{{item.name}}"></div>
+            </mat-checkbox>
+        </div>
+    </mat-option>
+</mat-autocomplete>

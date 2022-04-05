@@ -1,0 +1,17 @@
+<div class="selection-list">
+    <mat-selection-list #selectionList (selectionChange)="toggleSelection($event)" class="custom-mat-selection-list">
+        <cdk-virtual-scroll-viewport [itemSize]="100" class="custom-viewport-viewport">
+            <mat-list-option class="selection-option" checkboxPosition="before"
+                                *cdkVirtualFor="let option of dataLists; templateCacheSize: 0; let i = index;"
+                                [value]="option" [selected]="isSelected(option)">
+
+                <div class="attribute-container">
+                    <span title="{{option[key]}}" class="attribute-items" *ngFor="let key of attribute">{{option[key]}}</span>
+                    <span class="option-icon" *ngIf="icon">
+                        <mat-icon aria-hidden="true" aria-label="icon" (click)="onIconClick(option, $event)">{{icon}}</mat-icon>
+                    </span>
+                </div>
+            </mat-list-option>
+        </cdk-virtual-scroll-viewport>
+    </mat-selection-list>
+</div>

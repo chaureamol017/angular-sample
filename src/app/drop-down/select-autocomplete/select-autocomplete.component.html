@@ -1,0 +1,15 @@
+<mat-form-field class="customer-group-select" floatLabel="auto">
+    <input matInput  type="text" placeholder="{{placeHolder}}" [formControl]="selectAutoCompleteFormControl" [matAutocomplete]="selectAutoComplete"
+        (click)="onClickInputOrIcon()"/>
+
+    <mat-hint *ngIf="enableHint" >Enter text to find {{placeHolder}} by name</mat-hint>
+
+    <mat-spinner matSuffix *ngIf="showProgressSpinner" class="progress-spinner" [diameter]="18"></mat-spinner>
+    <mat-icon matSuffix (click)="onClickInputOrIcon()">arrow_drop_down</mat-icon>
+</mat-form-field>
+  
+<mat-autocomplete #selectAutoComplete="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelect($event)">
+    <mat-option *ngFor="let option of filteredOptions" [value]="option">
+        {{option.name}}
+    </mat-option>
+</mat-autocomplete>

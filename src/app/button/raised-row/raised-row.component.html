@@ -1,0 +1,5 @@
+<mat-toolbar class="raised-button-row">
+    <mat-toolbar-row>
+        <button mat-raised-button *ngFor="let buttonName of buttons;let indexOfelement=index;" (click)="buttonClick(indexOfelement)">{{buttonName}}</button>
+    </mat-toolbar-row>
+</mat-toolbar>

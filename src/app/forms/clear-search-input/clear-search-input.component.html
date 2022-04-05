@@ -1,0 +1,7 @@
+<div class="search-input-container">
+    <mat-icon *ngIf="showSearchIcon" class="search-icon">search</mat-icon>
+    <mat-form-field class="search-input-form-field" [floatLabel]="'never'">
+        <input type="text" matInput placeholder="Search" [formControl]="formControl" class="search-input">
+        <mat-icon matSuffix  *ngIf="showClearIcon" class="clear-icon" matTooltip="clear all" (click)="onClickClearSearchValue()">clear</mat-icon>
+    </mat-form-field>
+</div>
