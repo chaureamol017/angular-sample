@@ -31,11 +31,11 @@ export class TablePageComponent implements OnInit {
 
     this.selection = {
 
-      available: [],
+      available: [{id: 111, name: 'ABC', selected: false}, {id: 113, name: 'DEF', selected: false}],
       selected: [],
       removed: [],
       // operation?: OPERATION.APPLY,
-      attribute: [],
+      attribute: ['id', 'name'],
       // title?: string;
       // config?: SelectionConfig;
       // icon?: string;

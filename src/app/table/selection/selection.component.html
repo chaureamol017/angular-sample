@@ -8,8 +8,9 @@
         
         <div class="selection-container available">
             <app-row-details [header]="'Available'" [action]="'ADD ALL'"></app-row-details>
+            <app-selection-table [dataLists]="availableFiltered" [selected]="data.selected" [attribute]="attribute" (toggleSelection)="toggleSelection($event)"></app-selection-table>
 
-            <div class="selection-list">
+            <!-- <div class="selection-list">
 
                 <mat-selection-list (selectionChange)="toggleSelection($event)" class="custom-mat-selection-list">
                     <cdk-virtual-scroll-viewport itemSize="{{data?.config?.availableVSItemSize}}" class="custom-viewport-viewport">
@@ -27,7 +28,7 @@
                         </mat-list-option>
                     </cdk-virtual-scroll-viewport>
                 </mat-selection-list>
-            </div>
+            </div> -->
 
             <div *ngIf="availableToBeSelected.length === 0" class="empty-list">
                 Empty selection list.
@@ -38,8 +39,10 @@
 
         <div class="selection-container selected">
             <app-row-details [header]="'Selected'" [action]="'DELETE ALL'" [disabled]="selectedFiltered.length===0"></app-row-details>
+            <app-selected-tiles [selected]="selectedItems" [attribute]="attribute"></app-selected-tiles>
 
-            <div class="selected-option-container">
+            <!-- 
+                <div class="selected-option-container">
                 <div class="selection-list selected" *ngIf="selectedFiltered.length > 0">
                     <mat-chip-list class="mat-chip-list-stacked custom-mat-selection-list">
                         <cdk-virtual-scroll-viewport itemSize="{{data?.config?.selectedVSItemSize}}" class="custom-viewport-viewport">
@@ -60,15 +63,14 @@
                 <div *ngIf="selectionModel.selected.length === 0" class="empty-list">
                     No item is selected.
                 </div>
-            </div>
+            </div> -->
 
-            <div *ngIf="selectionModel.selected.length > 0 && selectedFiltered.length === 0"
-                 class="empty-list">
+            <div *ngIf="selectedItems.length > 0 && selectedItems.length === 0" class="empty-list">
                 None found, adjust your search criteria.
             </div>
 
             <div>
-                <span class="item-count">{{selectionModel.selected.length}} item{{selectionModel.selected.length > 1? 's' : ''}} selected</span>
+                <span class="item-count">{{selectedFiltered.length}} item{{selectedFiltered.length > 1? 's' : ''}} selected</span>
             </div>
         </div>
     </div>

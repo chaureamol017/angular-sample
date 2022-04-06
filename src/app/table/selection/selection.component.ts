@@ -1,7 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
-import {SelectionModel} from '@angular/cdk/collections';
-// import {SearchPipe} from '../../models/search-pipe';
 import {Selection} from '../../models/selection';
+import {FilterService} from '../../service/filter.service';
 
 @Component({
     selector: 'app-selection',
@@ -13,17 +12,15 @@ export class SelectionComponent implements OnInit {
     searchInput: string = '';
 
     availableToBeSelected: any[] = [];
-    selectionModel: SelectionModel<any>;
     attribute: string[];
-
-    // @ViewChild('availableSelectionSearch') searchInputRef: ElementRef;
+    selectedItems: any[] = [];
 
     private _data: Selection<any>;
     @Output() selectedEvent: EventEmitter<any> = new EventEmitter<any>();
     @Output() iconSelectionEvent: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
-        // private filterPipe: SearchPipe
+        private filterService: FilterService
         ) {
     }
 
@@ -34,67 +31,64 @@ export class SelectionComponent implements OnInit {
         return this._data;
     }
 
-    onSearchKeyUp($event) {
-        this.searchInput = $event;
-    }
-
     @Input()
     set data(value: Selection<any>) {
         this._data = value;
         this._data.icon = value.icon;
+
         this.attribute = this._data.attribute;
         this.availableToBeSelected = this._data.available;
+        this.selectedItems = this._data.selected;
+    }
 
-        this.selectionModel = new SelectionModel<any>(true, this._data.selected);
+    onSearchKeyUp($event) {
+        this.searchInput = $event;
     }
 
     toggleSelection(event): void {
-        if (!this.isSelected(event.option.value)) {
-            this.selectionModel.select(event.option.value);
+        const index = this.selectedItems.indexOf(event);
+        if (index === -1) {
+            this.selectedItems.push(event);
         } else {
-            const found = this.find(event.option.value);
-            this.selectionModel.deselect(found);
+            this.selectedItems.splice(index, 1);
         }
         this.emitSelectedEvent();
     }
 
+    onSelectionChange(event): void {
+        this.selectedItems = event;
+        this.emitSelectedEvent();
+    }
+
     private emitSelectedEvent() {
-        this.selectedEvent.emit(this.selectionModel.selected);
+        this.selectedEvent.emit(this.selectedItems);
     }
 
     removeSelected(option: any): void {
-        const found = this.find(option);
-        this.selectionModel.deselect(found);
+        const index = this.selectedItems.indexOf(option);;
+        this.selectedItems.splice(index, 1);
         this.emitSelectedEvent();
     }
 
     isSelected(option: any): boolean {
-        return !!this.find(option);
-    }
-
-    private find(option: any) {
-        return this.selectionModel.selected.find((s) => JSON.stringify(s) === JSON.stringify(option));
+        const index = this.selectedItems.indexOf(option);
+        return index > -1;
     }
 
     selectAllFiltered(): void {
-        this.availableFiltered.filter((f) => !this.isSelected(f));
-        this.selectionModel.select(...this.availableFiltered.filter((f) => !this.isSelected(f)));
-        this.emitSelectedEvent();
+        this.onSelectionChange(this.availableFiltered);
     }
 
     removeAllFilteredSelected(): void {
-        this.selectionModel.deselect(...this.selectedFiltered);
-        this.emitSelectedEvent();
+        this.onSelectionChange([]);
     }
 
     get availableFiltered(): any[] {
-        // return this.filterPipe.transform(this.availableToBeSelected, this.attribute, this.searchInputRef.nativeElement.value);
-        return [];
+        return this.filterService.filterByKeys(this.availableToBeSelected, this.attribute, this.searchInput);
     }
 
     get selectedFiltered(): any[] {
-        // return this.filterPipe.transform(this.selectionModel.selected, this.attribute, this.searchInputRef.nativeElement.value);
-        return [];
+        return this.filterService.filterByKeys(this.selectedItems, this.attribute, this.searchInput);
     }
 
     onClickOptionIcon(option, event): void {

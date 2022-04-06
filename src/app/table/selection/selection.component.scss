@@ -14,75 +14,12 @@
       grid-template-rows: 32px 1fr 28px;
       overflow: auto;
 
-      .selected-option-container {
-        display: flex;
-        align-items: center;
-        overflow: auto;
-      }
 
-      .selection-list {
-        height: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
-
-        .mat-selection-list {
-          padding-top: 0;
-        }
-
-        .mat-list {
-          padding-top: 0;
-        }
-
-        .selection-option {
-          padding-left: 16px;
-
-          div.mat-list-item-content {
-            padding: 0 16px 0 32px !important;
-          }
-
-        }
-
-        .attribute-container {
-          display: block;
-          flex-direction: row;
-          justify-content: flex-start;
-          margin: 0 -10px;
-        }
-
-        .attribute-items {
-          padding: 0 10px;
-        }
-
-        .selected-item {
-          background-color: rgba(85, 97, 220, .12);
-          color: #5561dc;
-          font-size: 14px;
-          letter-spacing: .1px;
-          line-height: 20px;
-          font-weight: 400;
-          width: fit-content;
-          height: 36px;
-          margin: 6px;
-          border-radius: 18px;
-          padding: 7px 7px 8px 16px;
-
-          .remove-icon {
-            font-size: 20px;
-            height: 20px;
-            width: 20px;
-          }
-        }
-
-        .selected-item:first-of-type {
-          margin-top: 10px;
-        }
-      }
-
-      .selection-list.selected {
-        margin-left: 24px;
-        overflow: hidden;
-        width: 100%;
-      }
+      // .selection-list.selected {
+      //   margin-left: 24px;
+      //   overflow: hidden;
+      //   width: 100%;
+      // }
 
       .empty-list {
         font-size: 14px;
@@ -110,28 +47,9 @@
     }
   }
 
-  .custom-mat-selection-list {
-    height: 100%;
-    .custom-viewport-viewport {
-      height: 100%;
-      width: 100%;
-    }
-  }
 
   div.mat-chip-list-wrapper {
     height: 100% !important;
-  }
-  .option-icon {
-    text-align: right;
-    color: rgba(20, 22, 30, 0.65);
-    height: 20px;
-    margin-right: 89px;
-    float: right;
-    .mat-icon {
-      height: 20px;
-      width: 20px;
-      font-size: 20px;
-    }
   }
 
 

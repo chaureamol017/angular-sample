@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-selected-tiles',
   templateUrl: './selected-tiles.component.html',
   styleUrls: ['./selected-tiles.component.scss']
 })
-export class SelectedTilesComponent implements OnInit {
+export class SelectedTilesComponent implements OnInit, OnChanges {
   @Output() onRemove: EventEmitter<any[]> = new EventEmitter<any>();
   @Output() selectionChange: EventEmitter<any[]> = new EventEmitter<any>();
   
@@ -17,6 +17,12 @@ export class SelectedTilesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.selected) {
+      this.filtered = this.selected.slice();
+    }
   }
 
   ngAfterViewInit(): void {

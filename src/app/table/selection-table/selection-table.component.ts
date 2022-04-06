@@ -7,7 +7,8 @@ import { MatSelectionList } from '@angular/material/list';
   styleUrls: ['./selection-table.component.scss']
 })
 export class SelectionTableComponent implements OnInit {
-  @Output() selectionChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output() selectionChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Output() toggleSelection: EventEmitter<any> = new EventEmitter<any>();
   @Output() click: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() dataLists: any[] = [];
@@ -23,14 +24,15 @@ export class SelectionTableComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.selectionListRef.selectedOptions.select(...this.selected)
-    this.emitSelectedEvent();
   }
 
   onIconClick(option, $event) {
     this.click.emit(option);
   }
 
-  toggleSelection(event): void {
+  onToggleSelection(event): void {
+    const value = {id: event.option.value.id, name: event.option.value.name}
+    this.toggleSelection.emit(value);
     this.emitSelectedEvent();
   }
 
@@ -47,7 +49,8 @@ export class SelectionTableComponent implements OnInit {
   }
 
   private emitSelectedEvent() {
-    this.selectionChange.emit(this.selectionListRef.selectedOptions.selected);
+    const items: any[] = this.selectionListRef.selectedOptions.selected.map(e => e.value);
+    this.selectionChange.emit(items);
   }
 
 }

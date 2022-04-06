@@ -6,8 +6,7 @@
             <!-- <cdk-virtual-scroll-viewport itemSize="100" class="custom-viewport-viewport"> -->
                 <!-- <mat-chip *cdkVirtualFor="let option of selectedFiltered; let i = index;" class="selected-item" -->
                 <mat-chip *ngFor="let option of selectedFiltered; let i = index;" class="selected-item"
-                        [selectable]="false" [removable]="true"
-                        (removed)="removeSelected(option)">
+                        [selectable]="false" [removable]="true" (removed)="removeSelected(option)">
                     <span class="attribute-container">
                         <span title="{{option[att]}}" class="attribute-items"  *ngFor="let att of attribute">{{option[att]}}</span>
                     </span>

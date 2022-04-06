@@ -1,5 +1,5 @@
 <div class="selection-list">
-    <mat-selection-list #selectionList (selectionChange)="toggleSelection($event)" class="custom-mat-selection-list">
+    <mat-selection-list #selectionList (selectionChange)="onToggleSelection($event)" class="custom-mat-selection-list">
         <cdk-virtual-scroll-viewport [itemSize]="100" class="custom-viewport-viewport">
             <mat-list-option class="selection-option" checkboxPosition="before"
                                 *cdkVirtualFor="let option of dataLists; templateCacheSize: 0; let i = index;"
