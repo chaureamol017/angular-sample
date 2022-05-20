@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-raised-row',
-  templateUrl: './raised-row.component.html',
-  styleUrls: ['./raised-row.component.scss']
+  selector: 'app-button-row-raised',
+  templateUrl: './button-row-raised.component.html',
+  styleUrls: ['./button-row-raised.component.scss']
 })
-export class RaisedRowComponent implements OnInit {
+export class ButtonRowRaisedComponent implements OnInit {
   @Input() buttons: string[] = [];
   @Output() switch: EventEmitter<number> = new EventEmitter();
 

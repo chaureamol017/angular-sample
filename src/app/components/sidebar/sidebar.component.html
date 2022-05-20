@@ -1,16 +1,8 @@
 <mat-nav-list>
-    <!-- <div class="profile-card">
-        <div class="header">
-            <h4> {{ loggedInUserName }} </h4>
-            <h6> {{loggedInUserEmail}} </h6>
-        </div>
-        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Soufiane FADIL">
-    </div> -->
-
     <mat-divider></mat-divider>
 
     <mat-list role="list">
-        <mat-list-item [class.mydasboard-list-item-selected]="activeLink==0" (click)="switchSideBar(0)">Button</mat-list-item>
+        <mat-list-item [class.mydasboard-list-item-selected]="activeLink==0" (click)="switchSideBar(0)">Forms</mat-list-item>
         <mat-list-item [class.mydasboard-list-item-selected]="activeLink==1" (click)="switchSideBar(1)">Drop Down</mat-list-item>
         <mat-list-item [class.mydasboard-list-item-selected]="activeLink==2" (click)="switchSideBar(2)">Table</mat-list-item>
         <mat-list-item [class.mydasboard-list-item-selected]="activeLink==3" (click)="switchSideBar(3)">Dialog</mat-list-item>

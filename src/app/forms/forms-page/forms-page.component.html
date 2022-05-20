@@ -1,0 +1,16 @@
+<app-button-row-raised [buttons]="buttons" (switch)="onButtonClick($event)"></app-button-row-raised>
+
+<app-row-details *ngIf="tabIndex === 0" [header]="'Showing all selected options'" [action]="'CLEAR ALL'"></app-row-details>
+
+<div *ngIf="tabIndex === 1">
+    <div style="width: 300px;">
+        <app-select-autocomplete [placeHolder]="'Search Select'" [options]="options" (selectCallback)="onOptionSelect($event)"></app-select-autocomplete>
+    </div>
+    <div style="width: 300px;">
+        <app-multi-select-autocomplete [placeHolder]="'Customer'" [options]="customerDataSource" [showProgressSpinner]="customerSpinner"
+        #customerMultiSelect (callbackResult)="onCloseCustomer($event)">
+    </app-multi-select-autocomplete>
+    </div>
+</div>
+
+<app-clear-search-input *ngIf="tabIndex === 2" (onKeyUp)="onSearchKeyUp($event)"></app-clear-search-input>

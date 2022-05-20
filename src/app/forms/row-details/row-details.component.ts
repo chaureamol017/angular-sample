@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 // A row with header at left and tow buttons on right
+// Can be used at top/bottom of any form to show Form Name / Note with an action button as text
 
 @Component({
   selector: 'app-row-details',
@@ -13,7 +14,8 @@ export class RowDetailsComponent implements OnInit {
   @Input() action: string = 'Cancel';
   @Input() disabled: boolean = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

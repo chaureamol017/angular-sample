@@ -10,6 +10,7 @@ export class ClearSearchInputComponent implements OnInit {
   @Input() showSearchIcon: boolean = true;
   @Output() onKeyUp: EventEmitter<string>  = new EventEmitter<string>();
   showClearIcon: boolean = false;
+  isChangedFromClear: boolean = false;
 
   formControl: FormControl = new FormControl();
 
@@ -22,10 +23,15 @@ export class ClearSearchInputComponent implements OnInit {
   onInputChange(input: string): void {
     this.showClearIcon = (input && input.length > 0)
 
-    this.emitValue();
+    if (this.isChangedFromClear) {
+      this.isChangedFromClear = false;
+    } else {
+      this.emitValue();
+    }
   }
 
   onClickClearSearchValue(): void {
+    this.isChangedFromClear = true;
     this.formControl.setValue('');
     this.emitValue();
   }

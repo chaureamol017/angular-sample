@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RaisedRowComponent } from './raised-row.component';
+import { ButtonRowRaisedComponent } from './button-row-raised.component';
 
-describe('RaisedRowComponent', () => {
-  let component: RaisedRowComponent;
-  let fixture: ComponentFixture<RaisedRowComponent>;
+describe('ButtonRowRaisedComponent', () => {
+  let component: ButtonRowRaisedComponent;
+  let fixture: ComponentFixture<ButtonRowRaisedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RaisedRowComponent ]
+      declarations: [ ButtonRowRaisedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RaisedRowComponent);
+    fixture = TestBed.createComponent(ButtonRowRaisedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
