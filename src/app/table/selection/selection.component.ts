@@ -1,6 +1,8 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
+import { ArrayComparatorPipe } from '../../pipe/array-comparator.pipe';
+import { FilterArrayPipe } from '../../pipe/filter-array.pipe';
 import {Selection} from '../../models/selection';
-import {FilterService} from '../../service/filter.service';
+import { ArrayElementTogglerPipe } from 'src/app/pipe/array-element-toggler.pipe';
 
 @Component({
     selector: 'app-selection',
@@ -20,7 +22,10 @@ export class SelectionComponent implements OnInit {
     @Output() iconSelectionEvent: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
-        private filterService: FilterService
+        private filterArrayPipe: FilterArrayPipe,
+        private elementTogglerPipe: ArrayElementTogglerPipe,
+        public changeDetector: ChangeDetectorRef,
+
         ) {
     }
 
@@ -46,13 +51,9 @@ export class SelectionComponent implements OnInit {
     }
 
     toggleSelection(event): void {
-        const index = this.selectedItems.indexOf(event);
-        if (index === -1) {
-            this.selectedItems.push(event);
-        } else {
-            this.selectedItems.splice(index, 1);
-        }
+        this.selectedItems = this.elementTogglerPipe.transform(this.selectedItems, event);
         this.emitSelectedEvent();
+        this.changeDetector.detectChanges();
     }
 
     onSelectionChange(event): void {
@@ -70,11 +71,6 @@ export class SelectionComponent implements OnInit {
         this.emitSelectedEvent();
     }
 
-    isSelected(option: any): boolean {
-        const index = this.selectedItems.indexOf(option);
-        return index > -1;
-    }
-
     selectAllFiltered(): void {
         this.onSelectionChange(this.availableFiltered);
     }
@@ -84,11 +80,11 @@ export class SelectionComponent implements OnInit {
     }
 
     get availableFiltered(): any[] {
-        return this.filterService.filterByKeys(this.availableToBeSelected, this.attribute, this.searchInput);
+        return this.filterArrayPipe.transform(this.availableToBeSelected, this.attribute, this.searchInput);
     }
 
     get selectedFiltered(): any[] {
-        return this.filterService.filterByKeys(this.selectedItems, this.attribute, this.searchInput);
+        return this.filterArrayPipe.transform(this.selectedItems, this.attribute, this.searchInput);
     }
 
     onClickOptionIcon(option, event): void {

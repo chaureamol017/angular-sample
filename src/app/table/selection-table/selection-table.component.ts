@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatSelectionList } from '@angular/material/list';
+import { ArrayComparatorPipe } from '../../pipe/array-comparator.pipe';
 
 @Component({
   selector: 'app-selection-table',
   templateUrl: './selection-table.component.html',
   styleUrls: ['./selection-table.component.scss']
 })
-export class SelectionTableComponent implements OnInit {
+export class SelectionTableComponent implements OnInit, OnChanges {
   @Output() selectionChange: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Output() toggleSelection: EventEmitter<any> = new EventEmitter<any>();
   @Output() click: EventEmitter<any> = new EventEmitter<any>();
@@ -18,7 +19,18 @@ export class SelectionTableComponent implements OnInit {
   
   @ViewChild('selectionList') selectionListRef: MatSelectionList;
 
-  constructor() { }
+  constructor(
+      private arrayComparator: ArrayComparatorPipe,
+    ) {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.selected && changes.selected.previousValue 
+          && !this.arrayComparator.transform(changes.selected.previousValue, changes.selected.currentValue)) {
+      this.selectionListRef.selectedOptions.select(...this.selected)
+    }
+  }
+
   ngOnInit(): void {
   }
 

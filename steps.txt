@@ -1,0 +1,9 @@
+
+
+
+# ngrx store
+npm install @ngrx/core
+npm install @ngrx/store
+dont run
+
+npm install @ngrx/effects

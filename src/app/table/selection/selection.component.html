@@ -8,27 +8,7 @@
         
         <div class="selection-container available">
             <app-row-details [header]="'Available'" [action]="'ADD ALL'"></app-row-details>
-            <app-selection-table [dataLists]="availableFiltered" [selected]="data.selected" [attribute]="attribute" (toggleSelection)="toggleSelection($event)"></app-selection-table>
-
-            <!-- <div class="selection-list">
-
-                <mat-selection-list (selectionChange)="toggleSelection($event)" class="custom-mat-selection-list">
-                    <cdk-virtual-scroll-viewport itemSize="{{data?.config?.availableVSItemSize}}" class="custom-viewport-viewport">
-                        <mat-list-option
-                                *cdkVirtualFor="let option of availableFiltered; templateCacheSize: 0; let i = index;"
-                                [value]="option"
-                                [selected]="isSelected(option)"
-                                class="selection-option" checkboxPosition="before">
-                          <div class="attribute-container">
-                              <span title="{{option[att]}}" class="attribute-items" *ngFor="let att of attribute">{{option[att]}}</span>
-                              <span class="option-icon" *ngIf="data?.icon">
-                                <mat-icon aria-hidden="true" aria-label="icon" (click)="onClickOptionIcon(option, $event)">{{data?.icon}}</mat-icon>
-                              </span>
-                          </div>
-                        </mat-list-option>
-                    </cdk-virtual-scroll-viewport>
-                </mat-selection-list>
-            </div> -->
+            <app-selection-table [dataLists]="availableFiltered" [selected]="selectedFiltered" [attribute]="attribute" (toggleSelection)="toggleSelection($event)"></app-selection-table>
 
             <div *ngIf="availableToBeSelected.length === 0" class="empty-list">
                 Empty selection list.
@@ -37,33 +17,11 @@
             <span class="item-count">{{availableFiltered.length}} item{{availableFiltered.length > 1 ? 's' :''}} found</span>
         </div>
 
-        <div class="selection-container selected">
+        <div class="selection-container">
             <app-row-details [header]="'Selected'" [action]="'DELETE ALL'" [disabled]="selectedFiltered.length===0"></app-row-details>
-            <app-selected-tiles [selected]="selectedItems" [attribute]="attribute"></app-selected-tiles>
-
-            <!-- 
-                <div class="selected-option-container">
-                <div class="selection-list selected" *ngIf="selectedFiltered.length > 0">
-                    <mat-chip-list class="mat-chip-list-stacked custom-mat-selection-list">
-                        <cdk-virtual-scroll-viewport itemSize="{{data?.config?.selectedVSItemSize}}" class="custom-viewport-viewport">
-                            <mat-chip
-                                    *cdkVirtualFor="let option of selectedFiltered; let i = index;"
-                                    class="selected-item"
-                                    [selectable]="false"
-                                    [removable]="true"
-                                    (removed)="removeSelected(option)">
-                                <span class="attribute-container">
-                                    <span title="{{option[att]}}" class="attribute-items"  *ngFor="let att of attribute">{{option[att]}}</span>
-                                </span>
-                                <mat-icon matChipRemove class="remove-icon">cancel</mat-icon>
-                            </mat-chip>
-                        </cdk-virtual-scroll-viewport>
-                    </mat-chip-list>
-                </div>
-                <div *ngIf="selectionModel.selected.length === 0" class="empty-list">
-                    No item is selected.
-                </div>
-            </div> -->
+            <ng-container *ngIf="selectedFiltered.length > 0">
+                <app-selected-tiles [selected]="selectedFiltered" [attribute]="attribute"></app-selected-tiles>
+            </ng-container>
 
             <div *ngIf="selectedItems.length > 0 && selectedItems.length === 0" class="empty-list">
                 None found, adjust your search criteria.

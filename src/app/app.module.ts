@@ -11,9 +11,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatOptionModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -29,10 +31,16 @@ import { SelectAutocompleteComponent } from './drop-down/select-autocomplete/sel
 import { SelectionComponent } from './table/selection/selection.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
+
+import { ArrayComparatorPipe } from './pipe/array-comparator.pipe';
+import { ArrayElementTogglerPipe } from './pipe/array-element-toggler.pipe';
+import { FilterArrayPipe } from './pipe/filter-array.pipe';
+import { SearchPipe } from './pipe/search.pipe';
+import { HighlightPipe } from './pipe/highlight.pipe';
+import { HighlightSearchPipe } from './pipe/highlight-search.pipe';
+
 import { DropDownPageComponent } from './drop-down/drop-down-page/drop-down-page.component';
 import { MultiSelectAutocompleteComponent } from './drop-down/multi-select-autocomplete/multi-select-autocomplete.component';
-import { HighlightSearch } from './shared/highlight-search.pipe';
-import { SearchPipe } from './models/search-pipe';
 import { TablePageComponent } from './table/table-page/table-page.component';
 import { DialogPageComponent } from './dialog/dialog-page/dialog-page.component';
 import { NotificationPageComponent } from './notification/notification-page/notification-page.component';
@@ -42,6 +50,10 @@ import { SelectionTableComponent } from './table/selection-table/selection-table
 import { ButtonPageComponent } from './button/button-page/button-page.component';
 import { RaisedRowComponent } from './button/raised-row/raised-row.component';
 import { SelectedTilesComponent } from './table/selected-tiles/selected-tiles.component';
+import { NotificationPopupComponent } from './notification/notification-popup/notification-popup.component';
+import { FlashNotificationComponent } from './notification/flash-notification/flash-notification.component';
+import { PaginatorTableComponent } from './table/paginator-table/paginator-table.component';
+import { StringFormatterPipe } from './pipe/string-formatter.pipe';
 
 
 
@@ -57,9 +69,6 @@ import { SelectedTilesComponent } from './table/selected-tiles/selected-tiles.co
     DropDownPageComponent,
     MultiSelectAutocompleteComponent,
 
-    HighlightSearch,
-    SearchPipe,
-
     TablePageComponent,
     DialogPageComponent,
     NotificationPageComponent,
@@ -69,6 +78,18 @@ import { SelectedTilesComponent } from './table/selected-tiles/selected-tiles.co
     ButtonPageComponent,
     RaisedRowComponent,
     SelectedTilesComponent,
+
+    ArrayComparatorPipe,
+    ArrayElementTogglerPipe,
+    FilterArrayPipe,
+    HighlightPipe,
+    HighlightSearchPipe,
+    SearchPipe,
+    NotificationPopupComponent,
+    FlashNotificationComponent,
+    PaginatorTableComponent,
+    StringFormatterPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -89,16 +110,23 @@ import { SelectedTilesComponent } from './table/selected-tiles/selected-tiles.co
     MatListModule,
     MatMenuModule,
     MatOptionModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSidenavModule,
+    MatTableModule,
     MatToolbarModule,
 
     ScrollingModule,
-    // CdkScrollableModule,
-    // ScrollDispatchModule,
   ],
-  providers: [],
+  providers: [
+    ArrayComparatorPipe,
+    ArrayElementTogglerPipe,
+    FilterArrayPipe,
+    HighlightPipe,
+    HighlightSearchPipe,
+    SearchPipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

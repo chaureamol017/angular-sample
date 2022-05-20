@@ -1,6 +1,11 @@
 <app-raised-row [buttons]="buttons" (switch)="onButtonClick($event)" class="button-row"></app-raised-row>
 
 <div class="table-container">
+    <app-paginator-table *ngIf="tableIndex == 0" 
+    [headers]="headers" [columns]="columns" [icons]="icons"
+    [rows]="tableDataList">
+
+    </app-paginator-table>
     <app-selection-table *ngIf="tableIndex == 1" [dataLists]="dataLists" [selected]="selected" [attribute]="attribute"></app-selection-table>
     <app-selected-tiles *ngIf="tableIndex == 2" [selected]="dataLists" [attribute]="attribute"></app-selected-tiles>
     <app-selection *ngIf="tableIndex == 3" [data]="selection"></app-selection>

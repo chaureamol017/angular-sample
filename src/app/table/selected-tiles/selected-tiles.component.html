@@ -3,16 +3,17 @@
     <div class="selection-list" *ngIf="selectedFiltered.length > 0">
         <mat-chip-list  #chipList  class="custom-mat-selection-list">
               
-            <!-- <cdk-virtual-scroll-viewport itemSize="100" class="custom-viewport-viewport"> -->
-                <!-- <mat-chip *cdkVirtualFor="let option of selectedFiltered; let i = index;" class="selected-item" -->
-                <mat-chip *ngFor="let option of selectedFiltered; let i = index;" class="selected-item"
+            <cdk-virtual-scroll-viewport itemSize="100" class="custom-viewport-viewport">
+                <mat-chip *cdkVirtualFor="let option of selectedFiltered; let i = index;" class="selected-item"
                         [selectable]="false" [removable]="true" (removed)="removeSelected(option)">
+                <!-- <mat-chip *ngFor="let option of selectedFiltered; let i = index;" class="selected-item"
+                        [selectable]="false" [removable]="true" (removed)="removeSelected(option)"> -->
                     <span class="attribute-container">
                         <span title="{{option[att]}}" class="attribute-items"  *ngFor="let att of attribute">{{option[att]}}</span>
                     </span>
                     <mat-icon matChipRemove class="remove-icon">cancel</mat-icon>
                 </mat-chip>
-            <!-- </cdk-virtual-scroll-viewport> -->
+            </cdk-virtual-scroll-viewport>
         </mat-chip-list>
     </div>
     <div *ngIf="selectedFiltered.length === 0" class="empty-list">

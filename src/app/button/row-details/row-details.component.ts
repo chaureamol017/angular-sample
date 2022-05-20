@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+// A row with header at left and tow buttons on right
+
 @Component({
   selector: 'app-row-details',
   templateUrl: './row-details.component.html',
