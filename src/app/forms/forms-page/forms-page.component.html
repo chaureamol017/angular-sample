@@ -2,7 +2,13 @@
 
 <app-row-details *ngIf="tabIndex === 0" [header]="'Showing all selected options'" [action]="'CLEAR ALL'"></app-row-details>
 
-<div *ngIf="tabIndex === 1">
+<div *ngIf="tabIndex === 1" >
+    <app-form-details-row [title]="'My Form Details'" [disableCancel]="disableForNoSelection()" [disableSave]="isExistingAndSelectedSame()"
+                        (cancelClick)="onCancel()" (saveClick)="onSave()">
+    </app-form-details-row>
+</div>
+
+<div *ngIf="tabIndex === 2">
     <div style="width: 300px;">
         <app-select-autocomplete [placeHolder]="'Search Select'" [options]="options" (selectCallback)="onOptionSelect($event)"></app-select-autocomplete>
     </div>
@@ -13,4 +19,4 @@
     </div>
 </div>
 
-<app-clear-search-input *ngIf="tabIndex === 2" (onKeyUp)="onSearchKeyUp($event)"></app-clear-search-input>
+<app-clear-search-input *ngIf="tabIndex === 3" (onKeyUp)="onSearchKeyUp($event)"></app-clear-search-input>

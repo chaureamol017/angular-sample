@@ -1,0 +1,61 @@
+.create-configs-header-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    font-family: Roboto;
+  
+    .create-audience-config-title-card {
+      padding: 12px 24px 24px 24px;
+      border-radius: 0;
+  
+      .save-form-btn-group {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+  
+        button {
+          border-radius: 2px;
+        }
+    
+        mat-error {
+          padding-bottom: 5px;
+        }
+    
+        .flat-primary-btn {
+          font-size: 13px;
+        }
+    
+        .mat-raised-button {
+          margin-left: 5px;
+          padding: 0 24px;
+        }
+    
+        .mat-raised-button[disabled] {
+          cursor: not-allowed;
+        }
+    
+        .mat-raised-button:hover:not([disabled]) {
+          background-color: #6671DF;
+        }
+      }
+    }
+  
+    .back-btn {
+      cursor: pointer;
+      color: #5561dc;
+      font-size: 13px;
+      line-height: 18px;
+      margin: 0;
+    }
+      
+    .create-configs-headline {
+      font-size: 24px;
+      line-height: 32px;
+      color: rgba(0, 0, 0, 0.87);
+      margin: 23px 0 0 0;
+    }
+  }
+  

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips'; 
 import { MatIconModule } from '@angular/material/icon';
@@ -56,6 +57,7 @@ import { NotificationPopupComponent } from './notification/notification-popup/no
 import { FlashNotificationComponent } from './notification/flash-notification/flash-notification.component';
 import { PaginatorTableComponent } from './table/paginator-table/paginator-table.component';
 import { StringFormatterPipe } from './pipe/string-formatter.pipe';
+import { FormDetailsRowComponent } from './forms/form-details-row/form-details-row.component';
 
 
 
@@ -93,6 +95,7 @@ import { StringFormatterPipe } from './pipe/string-formatter.pipe';
     HighlightSearchPipe,
     SearchPipe,
     StringFormatterPipe,
+    FormDetailsRowComponent,
 
   ],
   imports: [
@@ -105,6 +108,7 @@ import { StringFormatterPipe } from './pipe/string-formatter.pipe';
 
     MatAutocompleteModule,
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
     MatDividerModule,

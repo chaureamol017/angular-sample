@@ -8,7 +8,7 @@ import { MultiSelectData, StoreData } from 'src/app/models/data-model';
 })
 export class FormsPageComponent implements OnInit {
   tabIndex: number = 0;
-  buttons: string[] = ['Info Row', 'Drop Down', 'Clear Search']
+  buttons: string[] = ['Info Row', 'Forms Details', 'Drop Down', 'Clear Search']
 
 
 
@@ -29,7 +29,19 @@ export class FormsPageComponent implements OnInit {
   onButtonClick(event) {
     this.tabIndex = event;
   }
+// Form Details row operations
+  disableForNoSelection(): boolean {
+    return false;
+  }
+  isExistingAndSelectedSame(): boolean {
+    return false;
+  }
+  onCancel() {
+  }
+  onSave() {
 
+  }
+// -------------------------------------
 // Drop Down operations
   onOptionSelect($event) {
       this.optionSelect = $event;

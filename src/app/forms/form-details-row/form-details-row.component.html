@@ -1,0 +1,18 @@
+<div class="create-configs-header-container">
+    <mat-card class="create-audience-config-title-card">
+      <mat-card-content fxLayout class="ui-audience-config-title-wrapper">
+        <div fxFlex="50%">
+          <p class="create-configs-headline">{{title}}</p>
+        </div>
+        <div fxFlex="50%" class="save-form-btn-group">
+          <button mat-button class="mat-primary flat-primary-btn" [disabled]="disableCancel" (click)="onCancelClick()">
+            CANCEL
+          </button>
+          <button mat-raised-button class="mat-primary e2e-save" [disabled]="disableSave" (click)="onSaveClick()">
+            SAVE
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
